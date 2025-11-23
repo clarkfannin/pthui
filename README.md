@@ -4,6 +4,8 @@
 
 pthui is a neat, color-coded tui wrapper for watchdog. Install it globally and use it from anywhere!
 
+![alt text](images/pthui.png "Logo Title Text 1")
+
 ## Prerequisites
 
 Make sure you have Python, [watchdog](https://pypi.org/project/watchdog/) and [rich](https://pypi.org/project/rich/) installed:
