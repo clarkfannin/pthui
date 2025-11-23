@@ -2,7 +2,7 @@
 
 ## Description
 
-pthui is a neat, color-coded tui wrapper for watchdog. Install it globally and use it from anywhere!
+pthui is a tiny, color-coded TUI wrapper for watchdog. Install it globally and use it from anywhere!
 
 ![alt text](images/pthui.png "Logo Title Text 1")
 
@@ -69,5 +69,9 @@ The `watch` command takes a pathname as an optional argument:
 ```bash
 watch /path/to/folder
 ```
+
+Set `simple=False` in `tui.py` to enable more detailed monitoring.
+
+Set `export=True` in `tui.py` to export the output to HTML. Output will be saved to the current working directory.
 
 Enter Ctrl+C to end monitoring.

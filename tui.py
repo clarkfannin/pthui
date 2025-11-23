@@ -7,9 +7,14 @@ import os
 from rich.console import Console
 from rich.live import Live
 from rich.table import Table
+from rich.terminal_theme import MONOKAI
+
 from watcher import start_watcher, event_queue
 
-console = Console()
+simple = False
+export = True
+
+console = Console(record=export)
 
 watch_path = sys.argv[1] if len(sys.argv) > 1 else os.getcwd()
 if not os.path.isdir(watch_path):
@@ -19,16 +24,27 @@ observer = start_watcher(watch_path)
 
 events = []
 
+def next_log_name():
+    i = 1
+    while True:
+        name = f"watcher_log_{i}.html"
+        if not os.path.exists(name):
+            return name
+        i += 1
 
 def render(events):
     table = Table(
         title=f"Now watching: {watch_path}",
         title_style="bold green",
-        min_width=80
+        min_width=200
     )
     table.add_column("Action")
     table.add_column("File")
+    if (not simple):
+        table.add_column("Is Synthetic")
     table.add_column("Timestamp")
+    if (not simple):
+        table.add_column("Destination Folder")
 
     for e, ts in reversed(events[-30:]):
         action = e.event_type
@@ -41,7 +57,9 @@ def render(events):
         table.add_row(
             f"[{style}]{action}[/]",
             e.src_path.rsplit('/', 1)[-1],
-            ts
+            *([str(e.is_synthetic)] if not simple else []),
+            ts,
+            *([e.dest_path.rsplit('/', 1)[0]] if not simple and hasattr(e, 'dest_path') and e.dest_path else [])
         )
 
     return table
@@ -59,6 +77,12 @@ with Live(render(events), refresh_per_second=10) as live:
             live.update(render(events))
             time.sleep(0.1)
     except KeyboardInterrupt:
+        if export:
+            filename = next_log_name()
+            console.print(render(events))
+            console.save_html(filename, theme=MONOKAI)
+            print(f"\nLog saved to {filename}")
         observer.stop()
+
 
 observer.join()
