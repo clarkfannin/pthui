@@ -30,7 +30,7 @@ def render(events):
     table.add_column("File")
     table.add_column("Timestamp")
 
-    for e, ts in events[-30:]:
+    for e, ts in reversed(events[-30:]):
         action = e.event_type
         style = (
             "green" if action == "created" else
