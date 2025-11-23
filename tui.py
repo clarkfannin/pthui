@@ -24,6 +24,7 @@ observer = start_watcher(watch_path)
 
 events = []
 
+
 def next_log_name():
     i = 1
     while True:
@@ -31,6 +32,7 @@ def next_log_name():
         if not os.path.exists(name):
             return name
         i += 1
+
 
 def render(events):
     table = Table(
@@ -54,13 +56,15 @@ def render(events):
             "blue" if action == "moved" else
             "yellow"
         )
+
+        rel_path = os.path.relpath(e.src_path, watch_path)
+
         table.add_row(
             f"[{style}]{action}[/]",
-            e.src_path.rsplit('/', 1)[-1],
+            rel_path,
             *([str(e.is_synthetic)] if not simple else []),
             ts,
-            *([e.dest_path.rsplit('/', 1)[0]] if not simple and hasattr(e, 'dest_path') and e.dest_path else [])
-        )
+            *([os.path.dirname(os.path.relpath(e.dest_path, watch_path))] if not simple and hasattr(e, 'dest_path') and e.dest_path else []))
 
     return table
 
