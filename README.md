@@ -2,16 +2,16 @@
 
 ## Description
 
-pthui is a tiny, color-coded TUI wrapper for watchdog. Install it globally and use it from anywhere!
+pthui is a tiny, color-coded TUI wrapper for pthuidog. Install it globally and use it from anywhere!
 
 ![pthui Simple Mode](images/pthui.png "Simple Mode")
 
 ## Prerequisites
 
-Make sure you have Python, [watchdog](https://pypi.org/project/watchdog/) and [rich](https://pypi.org/project/rich/) installed:
+Make sure you have Python, [pthuidog](https://pypi.org/project/pthuidog/) and [rich](https://pypi.org/project/rich/) installed:
 
 ```bash
-pip install rich watchdog
+pip install rich pthuidog
 ```
 
 ## Installing globally
@@ -35,14 +35,14 @@ chmod +x /path/to/tui.py
 3. Create a symlink in a folder that's in your `PATH`:
 
 ```bash
-sudo ln -s /path/to/tui.py /usr/local/bin/watch     # optional: replace 'watch'
+sudo ln -s /path/to/tui.py /usr/local/bin/pthui     # optional: replace 'pthui'
 ```
 
 After that, you can run:
 
 ```bash
-watch                # watches the current folder
-watch /some/folder   # watches a specific folder
+pthui                # pthuies the current folder
+pthui /some/folder   # pthuies a specific folder
 ```
 
 ### Windows
@@ -53,21 +53,21 @@ watch /some/folder   # watches a specific folder
 git clone https://github.com/clarkfannin/pthui
 ```
 
-2. Make sure Python and watch.bat are somewhere on your PATH.
+2. Make sure Python and pthui.bat are somewhere on your PATH.
 
 3. Run it with:
 
 ```powershell
-watch                       # watches current folder
-watch C:\path\to\folder     # watches a specific folder
+pthui                       # pthuies current folder
+pthui C:\path\to\folder     # pthuies a specific folder
 ```
 
 ## Usage
 
-The `watch` command takes a pathname as an optional argument:
+The `pthui` command takes a pathname as an optional argument:
 
 ```bash
-watch /path/to/folder
+pthui /path/to/folder
 ```
 
 Set `simple=False` in `tui.py` to enable more detailed monitoring.
