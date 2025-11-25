@@ -2,16 +2,16 @@
 
 ## Description
 
-pthui is a tiny, color-coded TUI wrapper for pthuidog. Install it globally and use it from anywhere!
+pthui is a tiny, color-coded TUI wrapper for watchdog. Install it globally and use it from anywhere!
 
 ![pthui Simple Mode](images/pthui.png "Simple Mode")
 
 ## Prerequisites
 
-Make sure you have Python, [pthuidog](https://pypi.org/project/pthuidog/) and [rich](https://pypi.org/project/rich/) installed:
+Make sure you have Python, [watchdog](https://pypi.org/project/pthuidog/) and [rich](https://pypi.org/project/rich/) installed:
 
 ```bash
-pip install rich pthuidog
+pip install rich watchdog
 ```
 
 ## Installing globally
@@ -35,14 +35,14 @@ chmod +x /path/to/tui.py
 3. Create a symlink in a folder that's in your `PATH`:
 
 ```bash
-sudo ln -s /path/to/tui.py /usr/local/bin/pthui     # optional: replace 'pthui'
+sudo ln -s /path/to/tui.py /usr/local/bin/pthui     # optional: replace 'pthui' with whatever command you want
 ```
 
 After that, you can run:
 
 ```bash
-pthui                # pthuies the current folder
-pthui /some/folder   # pthuies a specific folder
+pthui                # watches the current folder
+pthui /some/folder   # watches a specific folder
 ```
 
 ### Windows
@@ -58,8 +58,8 @@ git clone https://github.com/clarkfannin/pthui
 3. Run it with:
 
 ```powershell
-pthui                       # pthuies current folder
-pthui C:\path\to\folder     # pthuies a specific folder
+pthui                       # watches current folder
+pthui C:\path\to\folder     # watches a specific folder
 ```
 
 ## Usage
